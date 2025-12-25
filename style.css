@@ -1,0 +1,331 @@
+:root {
+    --primary: #4f46e5;
+    --secondary: #ec4899;
+    --accent: #8b5cf6;
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: #0f172a;
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Dynamic Background */
+.background-blobs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.blob {
+    position: absolute;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: move 20s infinite alternate;
+}
+
+.blob-1 {
+    top: -10%;
+    left: -10%;
+    width: 50vw;
+    height: 50vw;
+    background: var(--primary);
+    animation-delay: 0s;
+}
+
+.blob-2 {
+    bottom: -10%;
+    right: -10%;
+    width: 60vw;
+    height: 60vw;
+    background: var(--secondary);
+    animation-delay: -5s;
+}
+
+.blob-3 {
+    top: 30%;
+    left: 40%;
+    width: 40vw;
+    height: 40vw;
+    background: var(--accent);
+    animation-delay: -10s;
+}
+
+@keyframes move {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, 50px) scale(1.1); }
+}
+
+/* Layout */
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+    z-index: 10;
+}
+
+.app-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.logo-icon {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.highlight {
+    background: linear-gradient(135deg, #60a5fa, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.app-header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* Glass Components */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.search-container {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-container:focus-within {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    color: white;
+    font-size: 1.1rem;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    background: rgba(0, 0, 0, 0.5);
+    border-color: var(--primary);
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+button {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border: none;
+    padding: 0 1.5rem;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    min-width: 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.1);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Flight Cards */
+.flight-card {
+    padding: 1.5rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    animation: slideUp 0.5s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+@keyframes slideUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.flight-num {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.status-badge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.status-on-time { background: rgba(34, 197, 94, 0.2); color: #4ade80; }
+.status-delayed { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+.status-boarding { background: rgba(234, 179, 8, 0.2); color: #facc15; }
+.status-scheduled { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+
+.route-display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.location {
+    text-align: center;
+    flex: 1;
+}
+
+.location-code {
+    font-size: 2.25rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.25rem;
+    background: linear-gradient(180deg, #fff, #cbd5e1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.location-time {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.route-line {
+    flex: 2;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 0 1.5rem;
+    position: relative;
+}
+
+.plane-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+.flight-details {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.detail-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+}
+
+.detail-value {
+    color: white;
+    font-weight: 600;
+}
+
+/* Loading/Error States */
+.no-results {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    background: var(--glass-bg);
+    border-radius: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (max-width: 480px) {
+    .container { padding: 1rem; }
+    .location-code { font-size: 1.75rem; }
+    .flight-num { font-size: 1.25rem; }
+}
