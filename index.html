@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Lookup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="container">
+        <header class="app-header">
+            <div class="logo-icon">✈️</div>
+            <h1>Flight<span class="highlight">Cast</span></h1>
+            <p>Real-time flight status & information</p>
+        </header>
+
+        <div class="search-container glass-panel">
+            <div class="input-group">
+                <input type="text" id="flightInput" placeholder="Enter Flight Number (e.g., AA123)..." autocomplete="off">
+                <button id="searchBtn" type="button">
+                    <span class="btn-text">Search</span>
+                    <span class="btn-loader"></span>
+                </button>
+            </div>
+        </div>
+
+        <div id="resultsContainer" class="results-container">
+            <!-- Results injected here -->
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
