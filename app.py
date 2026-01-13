@@ -5,7 +5,7 @@ import random
 app = Flask(__name__)
 
 # Mock Data Generator
-def get_mock_flights(flight_numbers):
+def get_mock_flights(flight_number):
     # Deterministic "random" based on flight number for consistent demo
     seed = sum(ord(c) for c in flight_number)
     random.seed(seed)
@@ -57,6 +57,7 @@ def search_flights():
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
+
 
 
 
